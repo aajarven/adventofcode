@@ -7,7 +7,7 @@ int main(int argc, char **argv){
     if (argc >= 2){
         fp = fopen(argv[1], "r");
     } else {
-        fprintf(stderr, "No input file. Give the file as a command line argument");
+        fprintf(stderr, "No input file. Give the file as a command line argument.\n");
         exit(EXIT_FAILURE);
     }
 
