@@ -1,2 +1,5 @@
-frequency: frequency.c
-	gcc frequency.c -o bin/frequency
+drift: drift.c
+	gcc drift.c -o bin/drift
+
+clean: 
+	rm bin/*
