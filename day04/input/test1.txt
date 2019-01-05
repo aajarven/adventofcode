@@ -1,0 +1,8 @@
+[1518-11-02 00:00] Guard #433 begins shift
+[1518-11-02 00:05] falls asleep
+[1518-11-02 00:09] wakes up
+[1518-12-05 23:56] Guard #2593 begins shift
+[1518-12-05 00:17] falls asleep
+[1518-12-05 00:46] wakes up
+[1518-12-06 00:48] falls asleep
+[1518-12-06 00:59] wakes up
