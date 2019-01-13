@@ -13,4 +13,6 @@ struct guard{
 struct guard* find_or_insert(struct guard*, int);
 struct guard* create_guard(int);
 int totalminutes(struct guard*);
+int sleepiestminute(struct guard*);
 struct guard* find_sleepiest(struct guard*);
+struct guard* find_sleepiest_minute(struct guard*);

@@ -59,6 +59,24 @@ int totalminutes(struct guard *g) {
     }
 }
 
+/*
+ * Returns the number of minutes the guard has slept on the minute during which
+ * they have slept the most on
+ */
+int sleepiestminute(struct guard *g){
+    int maxminutes = 0;
+    if (!g) {
+        return -1;
+    } else {
+        for (int i=0; i<60; i++){
+            if (g->minutes[i] > maxminutes) {
+                maxminutes = g->minutes[i];
+            }
+        }
+    }
+    return maxminutes;
+}
+
 struct guard* find_sleepiest(struct guard* root){
     if ((!root->left) && (!root->right)) {
         return root;
@@ -83,9 +101,43 @@ struct guard* find_sleepiest(struct guard* root){
         int leftminutes = totalminutes(sleepyleft);
         int rootminutes = totalminutes(root);
 
-        if (rootminutes > leftminutes && rootminutes > rightminutes) {
+        if (rootminutes >= leftminutes && rootminutes >= rightminutes) {
             return root;
-        } else if (leftminutes > rootminutes && leftminutes > rightminutes) {
+        } else if (leftminutes >= rootminutes && leftminutes >= rightminutes) {
+            return sleepyleft;
+        } else {
+            return sleepyright;
+        }
+    }
+}
+
+struct guard* find_sleepiest_minute(struct guard *root){
+    if ((!root->left) && (!root->right)) {
+        return root;
+    } else if (!root->left) {
+        struct guard *sleepyright = find_sleepiest_minute(root->right);
+        if (sleepiestminute(sleepyright) > sleepiestminute(root)) {
+            return sleepyright;
+        } else {
+            return root;
+        }
+    } else if (!root->right) {
+        struct guard *sleepyleft = find_sleepiest_minute(root->left);
+        if (sleepiestminute(sleepyleft) > sleepiestminute(root)) {
+            return sleepyleft;
+        } else {
+            return root;
+        }
+    } else {
+        struct guard *sleepyleft = find_sleepiest_minute(root->left);
+        struct guard *sleepyright = find_sleepiest_minute(root->right);
+        int leftminutes = sleepiestminute(sleepyleft);
+        int rightminutes = sleepiestminute(sleepyright);
+        int rootminutes = sleepiestminute(root);
+
+        if (rootminutes >= leftminutes && rootminutes >= rightminutes) {
+            return root;
+        } else if (leftminutes >= rootminutes && leftminutes >= rightminutes) {
             return sleepyleft;
         } else {
             return sleepyright;

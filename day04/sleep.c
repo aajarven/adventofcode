@@ -74,7 +74,19 @@ int main(int argc, char **argv){
             sleeps = sleepiest->minutes[i];
         }
     }
-    printf("(Sleepiest guard ID) * (their most sleeped minute) = %d\n", sleepiest->id * bestminute);
+    printf("Part 1: (Sleepiest guard ID) * (their most sleeped minute) = %d\n", sleepiest->id * bestminute);
+
+    sleepiest = find_sleepiest_minute(root);
+    sleeps = 0;
+    bestminute = 0;
+    for(int i=0; i<60; i++){
+        if (sleepiest->minutes[i] > sleeps) {
+            sleeps = sleepiest->minutes[i];
+            bestminute = i;
+        }
+    }
+    
+    printf("Part 2: (Sleepiest guard ID) * (their most sleeped minute) = %d\n", sleepiest->id * bestminute);
 
     exit(0);
 }
